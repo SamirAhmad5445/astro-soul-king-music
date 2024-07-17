@@ -1,0 +1,10 @@
+---
+import Counter from "@components/Counter";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main class="grid min-h-svh place-content-center bg-slate-950 text-slate-100">
+    <Counter client:only="react" />
+  </main>
+</Layout>
