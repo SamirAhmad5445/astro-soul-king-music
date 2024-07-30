@@ -23,7 +23,16 @@ const UserRegisterForm: React.FC = () => {
     e.preventDefault();
     setError("");
 
-    if (!isStepOneValid() || !isStepTwoValid()) {
+    if (!isStepOneValid()) {
+      return;
+    }
+
+    if (currentStep !== 2) {
+      setCurrentStep(2);
+      return;
+    }
+
+    if (!isStepTwoValid()) {
       return;
     }
 
