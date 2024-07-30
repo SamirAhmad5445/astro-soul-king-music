@@ -1,0 +1,52 @@
+---
+import Layout from "@layouts/Layout.astro";
+import UserLoginForm from "@components/forms/UserLoginForm";
+import { Image } from "astro:assets";
+
+import PosterImage from "@assets/album-poster.jpeg";
+import Logo from "@assets/logo.png";
+---
+
+<Layout title="Welcome BAAAAABEEEEEEEEEE">
+  <main class="grid h-svh w-svw overflow-x-hidden lg:grid-cols-2">
+    <section
+      class="size-full bg-accent-600/60 max-lg:hidden lg:overflow-y-hidden"
+      transition:name="login-poster"
+    >
+      <Image
+        src={PosterImage}
+        class="aspect-square size-full object-cover object-center"
+        quality={"high"}
+        sizes={"1800"}
+        alt=""
+      />
+    </section>
+
+    <section
+      class="sticky right-0 top-0 grid h-svh w-full place-content-center"
+    >
+      <Image
+        src={Logo}
+        sizes="48"
+        class="mx-auto mb-8 w-32 lg:mb-2 lg:w-16"
+        alt=""
+      />
+
+      <h1 class="text-2xl font-medium text-primary-200 md:text-4xl">
+        Welcome To
+        <span class="font-medium text-primary-500">SOUL KING</span>
+        App
+      </h1>
+      <p class="mb-8 text-2xl font-medium text-primary-200">
+        Log in and Join the Party.
+      </p>
+      <UserLoginForm client:load />
+      <p class="font-sm mt-4 text-center">
+        <span class="text-neutral-100/80">Don't have an account?</span>
+        <a class="underline hover:text-primary-400" href="/register">
+          Sign up
+        </a>
+      </p>
+    </section>
+  </main>
+</Layout>

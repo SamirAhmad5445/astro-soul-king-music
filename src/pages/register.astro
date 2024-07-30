@@ -1,0 +1,46 @@
+---
+import Layout from "@layouts/Layout.astro";
+import UserRegisterForm from "@components/forms/UserRegisterForm";
+import PosterImage from "@assets/album-poster.jpeg";
+import Logo from "@assets/logo.png";
+
+import { Image } from "astro:assets";
+---
+
+<Layout title="Create your account">
+  <main class="grid min-h-svh max-w-full overflow-x-hidden lg:grid-cols-2">
+    <section
+      class="sticky right-0 top-0 grid min-h-svh place-content-center gap-4 pb-8 lg:w-full"
+    >
+      <Image
+        src={Logo}
+        sizes="48"
+        class="mx-auto mb-8 w-32 lg:mb-2 lg:w-16"
+        alt=""
+      />
+      <h1 class="text-2xl font-medium text-primary-200 md:text-4xl">
+        Sign up To Soul King
+      </h1>
+      <UserRegisterForm client:load />
+    </section>
+
+    <section
+      class="size-full max-lg:hidden lg:overflow-hidden"
+      transition:name="login-poster"
+    >
+      <Image
+        src={PosterImage}
+        class="aspect-square size-full object-cover object-center"
+        quality={"high"}
+        sizes={"1800"}
+        alt=""
+      />
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  body {
+    @apply mb-16 from-neutral-950 from-65% to-neutral-800 max-lg:bg-gradient-to-b lg:mb-0;
+  }
+</style>
