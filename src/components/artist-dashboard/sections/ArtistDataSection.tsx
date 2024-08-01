@@ -1,13 +1,19 @@
 import type { Artist, ArtistStatus } from "@utils/types";
 import { useEffect, useState } from "react";
 
-const ArtistDataSection: React.FC = () => {
+interface ArtistDataSectionProps {
+  artistName: string;
+}
+
+const ArtistDataSection: React.FC<ArtistDataSectionProps> = ({
+  artistName,
+}) => {
   const [artist, setArtist] = useState<Artist>();
   const [profileImage, setProfileImage] = useState<string>("");
   const [status, setStatus] = useState<ArtistStatus>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  console.log(artistName);
   useEffect(() => {
     fetchArtistInfo();
     fetchArtistImage();
@@ -16,13 +22,16 @@ const ArtistDataSection: React.FC = () => {
 
   async function fetchArtistInfo() {
     try {
-      const response = await fetch("https://localhost:7066/api/artist/info", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `https://localhost:7066/api/artist/${artistName}/info`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
         },
-        credentials: "include",
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -41,7 +50,7 @@ const ArtistDataSection: React.FC = () => {
   async function fetchArtistImage() {
     try {
       const response = await fetch(
-        "https://localhost:7066/api/artist/profile-image",
+        `https://localhost:7066/api/artist/${artistName}/profile-image`,
         {
           method: "GET",
           headers: {
@@ -70,7 +79,7 @@ const ArtistDataSection: React.FC = () => {
       const response = await fetch("https://localhost:7066/api/artist/status", {
         method: "GET",
         headers: {
-          "Content-Type": "image/webp",
+          "Content-Type": "application/json",
         },
         credentials: "include",
       });
@@ -100,7 +109,7 @@ const ArtistDataSection: React.FC = () => {
   return (
     <>
       <div className="my-4 flex flex-col items-center gap-4 rounded-xl bg-neutral-900 px-4 py-4 text-center shadow-xl md:flex-row md:text-start">
-        <div className="relative size-24 shadow-md">
+        <div className="relative size-24 rounded-full shadow-md">
           <img
             src={profileImage}
             className="overflow-hidden rounded-full object-cover object-center"

@@ -13,7 +13,7 @@ const App: React.FC<AppProps> = ({ artistName }) => {
         <h1 className="mb-4 mt-8 px-4 text-2xl font-bold">
           Welcome, {artistName}!
         </h1>
-        <ArtistDataSection />
+        <ArtistDataSection artistName={artistName} />
       </header>
 
       <main>
