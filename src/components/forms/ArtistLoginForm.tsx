@@ -1,5 +1,6 @@
 import { LoadingSvg } from "@assets/icons/LoadingSvg";
 import ErrorMessage from "@components/ErrorMessage";
+import type { Artist } from "@utils/types";
 import { useState, type FormEvent } from "react";
 
 const ArtistLoginForm: React.FC = () => {
@@ -41,7 +42,7 @@ const ArtistLoginForm: React.FC = () => {
         return;
       }
 
-      const { isActivated } = await response.json();
+      const { isActivated } = (await response.json()) as Artist;
       location.href = isActivated ? "/artist/dashboard" : "/artist/activation";
     } catch (e) {
       setIsLoading(false);
