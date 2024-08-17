@@ -14,6 +14,6 @@ if (username !== artistName || role !== "artist") {
 
 <Layout title="Edit Profile">
   <Container size="md">
-    <EditProfileForm artistName={artistName} client:load />
+    <EditProfileForm artistName={artistName} client:only="react" />
   </Container>
 </Layout>

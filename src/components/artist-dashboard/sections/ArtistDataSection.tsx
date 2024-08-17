@@ -1,6 +1,7 @@
 import { EditSvg } from "@assets/icons/EditSvg";
 import type { Artist, ArtistStatus } from "@utils/types";
 import { useEffect, useState } from "react";
+import DefaultProfilePic from "@assets/default-profile-image.webp";
 
 interface ArtistDataSectionProps {
   artistName: string;
@@ -69,7 +70,6 @@ const ArtistDataSection: React.FC<ArtistDataSectionProps> = ({
       setProfileImage(URL.createObjectURL(image));
     } catch (e) {
       console.log(e);
-      setError("Oops, Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -99,6 +99,14 @@ const ArtistDataSection: React.FC<ArtistDataSectionProps> = ({
     }
   }
 
+  function getProfileImage() {
+    if (!profileImage) {
+      return DefaultProfilePic.src;
+    }
+
+    return profileImage;
+  }
+
   if (loading) {
     return <div className="text-accent-100">Loading...</div>;
   }
@@ -112,7 +120,7 @@ const ArtistDataSection: React.FC<ArtistDataSectionProps> = ({
       <div className="my-4 flex flex-col items-center gap-4 rounded-xl bg-neutral-900 px-4 py-4 text-center shadow-xl md:flex-row md:text-start">
         <div className="relative size-24 rounded-full shadow-md">
           <img
-            src={profileImage}
+            src={getProfileImage()}
             className="overflow-hidden rounded-full object-cover object-center"
             alt=""
           />

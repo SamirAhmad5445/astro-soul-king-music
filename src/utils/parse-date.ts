@@ -44,3 +44,18 @@ export const formatDate = (date: Date): string => {
 
   return `${year}-${month}-${day}`;
 };
+export const formatTimer = (currentTime: number, duration: number): string => {
+  const currentTimeBySec = Math.floor(currentTime);
+  const durationBySec = Math.floor(duration);
+
+  const sec1 = currentTimeBySec % 60;
+  const min1 = Math.floor(currentTimeBySec / 60);
+
+  const sec2 = durationBySec % 60;
+  const min2 = Math.floor(durationBySec / 60);
+
+  const formattedCurrent = `${min1.toString().padStart(2, "0")}:${sec1.toString().padStart(2, "0")}`;
+  const formattedDuration = `${min2.toString().padStart(2, "0")}:${sec2.toString().padStart(2, "0")}`;
+
+  return `${formattedCurrent}/${formattedDuration}`;
+};

@@ -26,3 +26,12 @@ export type Song = {
   likesCount: number;
   playsCount: number;
 };
+
+export type AlbumResponse = Album & {
+  artistName: string;
+};
+
+export type SongResponse = Song & {
+  artistName: string;
+  albumName: string;
+};

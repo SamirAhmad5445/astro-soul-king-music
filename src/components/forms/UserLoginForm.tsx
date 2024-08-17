@@ -42,8 +42,10 @@ const UserLoginForm: React.FC = () => {
         return;
       }
 
-      const token = await response.text();
-      localStorage.setItem("token", token);
+      const data: any = await response.json();
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("login", "true");
+      localStorage.setItem("username", username);
       location.href = "/app";
     } catch (e) {
       setIsLoading(false);

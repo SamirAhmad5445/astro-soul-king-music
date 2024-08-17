@@ -1,0 +1,11 @@
+---
+import Player from "@components/Player";
+import Layout from "@layouts/Layout.astro";
+
+const { artistName } = Astro.params;
+---
+
+<Layout title="Artist profile">
+  {artistName}
+  <Player client:only="react" transition:persist="player" />
+</Layout>
