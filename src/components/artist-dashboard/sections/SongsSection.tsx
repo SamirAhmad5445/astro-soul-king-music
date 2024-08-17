@@ -55,9 +55,9 @@ const SongsSection = () => {
           {songs.map((song) => (
             <tr className="mx-2 grid grid-cols-4 px-2 py-3" key={song.name}>
               <td>{song.name}</td>
-              <td>{new Date(song.releaseDate).toLocaleTimeString()}</td>
+              <td>{new Date(song.releaseDate).toLocaleString()}</td>
               <td>{song.likesCount} Like</td>
-              <td>Played {song.listenersCount} time</td>
+              <td>{song.playsCount} Listeners</td>
             </tr>
           ))}
         </tbody>

@@ -1,3 +1,4 @@
+import { EditSvg } from "@assets/icons/EditSvg";
 import type { Artist, ArtistStatus } from "@utils/types";
 import { useEffect, useState } from "react";
 
@@ -13,7 +14,7 @@ const ArtistDataSection: React.FC<ArtistDataSectionProps> = ({
   const [status, setStatus] = useState<ArtistStatus>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  console.log(artistName);
+
   useEffect(() => {
     fetchArtistInfo();
     fetchArtistImage();
@@ -117,11 +118,16 @@ const ArtistDataSection: React.FC<ArtistDataSectionProps> = ({
           />
         </div>
 
-        <div className="mr-auto grid items-start gap-2">
+        <div className="grid items-start gap-2 md:mr-auto">
           <h2 className="flex items-baseline gap-2 text-3xl font-medium">
             {artist?.firstName}
             {artist?.lastName}
             <span className="text-xl opacity-80">({artist?.displayName})</span>
+
+            <a href={`/artist/${artistName}/edit`}>
+              <EditSvg className="size-6" />
+              <span className="sr-only">Edit Account</span>
+            </a>
           </h2>
           <p className="max-w-[52ch]">{artist?.description}</p>
         </div>

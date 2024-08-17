@@ -2,11 +2,11 @@ import AlbumsSection from "./sections/AlbumsSection";
 import ArtistDataSection from "./sections/ArtistDataSection";
 import SongsSection from "./sections/SongsSection";
 
-interface AppProps {
+interface DashboardProps {
   artistName: string;
 }
 
-const App: React.FC<AppProps> = ({ artistName }) => {
+const Dashboard: React.FC<DashboardProps> = ({ artistName }) => {
   return (
     <>
       <header>
@@ -17,11 +17,11 @@ const App: React.FC<AppProps> = ({ artistName }) => {
       </header>
 
       <main>
-        <AlbumsSection />
+        <AlbumsSection artistName={artistName} />
         <SongsSection />
       </main>
     </>
   );
 };
 
-export default App;
+export default Dashboard;

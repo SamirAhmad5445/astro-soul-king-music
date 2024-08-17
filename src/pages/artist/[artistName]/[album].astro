@@ -1,0 +1,34 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@layouts/Container.astro";
+import AlbumComponent from "@components/artist-dashboard/AlbumComponent";
+import { deslugify } from "@utils/parse-path";
+
+const { artistName, album } = Astro.params;
+
+if (!artistName || !album) {
+  return Astro.redirect("/artist");
+}
+
+const username = Astro.cookies.get("username")?.value!;
+const role = Astro.cookies.get("role")?.value;
+
+if (username !== artistName || role !== "artist") {
+  return Astro.redirect("/login");
+}
+
+const name = deslugify(album);
+---
+
+<Layout title={name}>
+  <Container>
+    <p class="mb-4 px-4">
+      &rarr;
+      <a class="hover:text-primary-500" href={`/artist/${username}`}
+        >{username}</a
+      >/
+      <a class="hover:text-primary-500" href={`/artist/${name}`}>{name}</a>
+    </p>
+    <AlbumComponent artistName={artistName} album={name} client:load />
+  </Container>
+</Layout>

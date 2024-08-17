@@ -1,0 +1,19 @@
+---
+import Dashboard from "@components/artist-dashboard/Dashboard";
+import Layout from "@layouts/Layout.astro";
+
+const { artistName } = Astro.params;
+
+const username = Astro.cookies.get("username")?.value!;
+const role = Astro.cookies.get("role")?.value;
+
+if (username !== artistName || role !== "artist") {
+  return Astro.redirect("/login");
+}
+---
+
+<Layout title="Artist Dashboard">
+  <div class="container mx-auto px-4" transition:persist>
+    <Dashboard artistName={artistName} client:load />
+  </div>
+</Layout>

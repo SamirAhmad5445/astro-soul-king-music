@@ -1,0 +1,19 @@
+---
+import Container from "@layouts/Container.astro";
+import Layout from "@layouts/Layout.astro";
+import EditProfileForm from "@components/artist-dashboard/EditProfileForm.tsx";
+const { artistName } = Astro.params;
+
+const username = Astro.cookies.get("username")?.value!;
+const role = Astro.cookies.get("role")?.value;
+
+if (username !== artistName || role !== "artist") {
+  return Astro.redirect("/login");
+}
+---
+
+<Layout title="Edit Profile">
+  <Container size="md">
+    <EditProfileForm artistName={artistName} client:load />
+  </Container>
+</Layout>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  size?: "xl" | "lg" | "md" | "sm";
+}
+
+const { size = "lg" } = Astro.props;
+---
+
+<main
+  class:list={[
+    ["container mx-auto min-h-svh max-w-screen-lg px-4 py-8"],
+    { "max-w-screen-sm": size === "sm" },
+    { "max-w-screen-md": size === "md" },
+    { "max-w-screen-lg": size === "lg" },
+    { "max-w-screen-xl": size === "xl" },
+  ]}
+>
+  <slot />
+</main>

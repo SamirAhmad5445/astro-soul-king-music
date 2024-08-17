@@ -107,6 +107,13 @@ const UserRegisterForm: React.FC = () => {
       return false;
     }
 
+    checkAvailable();
+
+    if (!isAvailable) {
+      setError("The username is not available.");
+      return false;
+    }
+
     if (!password || password.length < 8) {
       setError("Please enter a password (at least 8 characters).");
       return false;
@@ -153,7 +160,7 @@ const UserRegisterForm: React.FC = () => {
               isAvailable !== null
                 ? isAvailable
                   ? "border-success-400"
-                  : "border-danger-400"
+                  : "border-danger-500"
                 : "focus:border-primary-400"
             }`}
             type="text"

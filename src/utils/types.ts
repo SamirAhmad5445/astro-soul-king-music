@@ -24,5 +24,5 @@ export type Song = {
   name: string;
   releaseDate: Date;
   likesCount: number;
-  listenersCount: number;
+  playsCount: number;
 };

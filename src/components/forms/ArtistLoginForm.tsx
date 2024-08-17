@@ -43,7 +43,7 @@ const ArtistLoginForm: React.FC = () => {
       }
 
       const { isActivated } = (await response.json()) as Artist;
-      location.href = isActivated ? "/artist/dashboard" : "/artist/activation";
+      location.href = isActivated ? `/artist/${username}` : "/artist/activation";
     } catch (e) {
       setIsLoading(false);
       console.log(e);

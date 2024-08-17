@@ -1,13 +1,14 @@
 ---
-import Layout from "@layouts/Layout.astro";
----
+const username = Astro.cookies.get("username")
+const role = Astro.cookies.get("role")
 
-<Layout title="Soul King">
-  <main class="flex gap-12 text-3xl">
-    <a href="/login" class="hover:text-primary-400 underline">Login</a>
-    <a href="/register" class="hover:text-primary-400 underline">Register</a>
-    <a href="/artist/login" class="hover:text-success-400 underline">
-      Dashboard
-    </a>
-  </main>
-</Layout>
+if (!username || !role) {
+  return Astro.redirect("/register");
+}
+
+return Astro.redirect(
+  role! === "user"
+  ? "/login"
+  : "/artist/login"
+)
+---
